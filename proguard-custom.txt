@@ -51,7 +51,9 @@
 -keepattributes SourceFile,LineNumberTable
 
 # Enable proguard with Cordova
+-keep class org.apache.cordova.* { *; }
 -keep class org.apache.cordova.** { *; }
+-keep class org.apache.cordova.engine.* { *; }
 -keep public class * extends org.apache.cordova.CordovaPlugin
 -keep class org.apache.cordova.CordovaPlugin{}
 
@@ -123,3 +125,17 @@
 # These clases contain references to cordova webView
 -keep class com.ionicframework.cordova.webview.** {*; }
 -keep class com.ionicframework.cordova.webview.*
+
+
+# Rules for firebase analytics
+-keep class by.chemerisuk.cordova.firebase.** { *; }
+-keep class by.chemerisuk.cordova.support.** { *; }
+
+-keepclassmembers class ** {
+    @by.chemerisuk.cordova.support.CordovaMethod *;
+}
+
+keep public enum by.chemerisuk.cordova.support.ReflectiveCordovaPlugin$** {
+    **[] $VALUES;
+    public *;
+}
